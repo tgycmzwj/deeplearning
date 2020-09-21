@@ -1,0 +1,127 @@
+*********course4/week1/convolution_model_step_by_step********
+(1) define a padding function
+(2) a function to compute the convolution of two matrixes of the same size
+(3) combine the padding function and the single step convolution computation, get a function that computes the convolution of two matrixes
+(4) define a pooling function
+(5) define derivative of convolution (Z=conv(A,W)+b, given the value of df/dZ, A, W, b, convolution parameters, want to get df/dA, df/dW, df/db)
+(6) define a function creating mask windows (mark the element which is being processed during the max pooling procedure)
+(7) define a function creating mask windows (mark each element with 1/n, the proportion being processed during the mean pooling procedure)
+(8) combine two mask windows to get the derivative of the pooling layer
+
+
+
+*********course4/week1/convolution_model_application***********
+(1) load graphs
+(2) a function to create placeholder for tensorflow (given image_height, image_width, num_of_channel, num_of_classes, output two placeholders, X, Y)
+(3) a function to initialize weights
+(4) initialize weights, use parameters['W1'].eval to see the current values (note, the tf.global_variables_initializer() is to clear memory)
+(5) a function implement the forward propogation with tensorflow
+(6) run the forward propagation, values are passed to variables using dictionary
+(7) define cost function using the output and true target
+(8) run the convolution_model_step_by_step
+(9) combine everything together: set parameters---define forward propagation---define compute cost---define optimizer---clear memory (global initializer)---iterate over each epoch---define mini-batches---run on the mini-batch (Note: _ , temp_cost = sess.run([optimizer, cost], feed_dict={X:minibatch_X, Y:minibatch_Y}))
+
+
+
+
+******************course4/week2/keras_tutorial*****************
+(1) load graphs
+(2) define network structure: the input is a tuple indicating the size of image---compile the model with cost, metrics, optimizer---fit the model with data,epoch,batch_size---evaluate the model
+
+
+
+
+******************course4/week2/residual_networks***************
+**block is equivalent to the package built in layer such as convolution
+(1) define a identity block: X is added back after three blocks of convolution (Add()[X,X_copied])
+(2) run the identity block using a tensorflow session
+(3) define a (convolutional) identity black: The convolution of X is added back after three blocks of convolution
+(4) run the (convolutional) identity block using a tensorflow session
+(5) put everything together
+
+
+
+***course4/week3/autonomous_driving_application_car_detection***
+(1) define a function that filter the boxes---delete the boxes for which the max class score is still less than the threshold
+(2) define a function that calculate the intersection/union configuration
+(3) define a function that extract the N non-overlapping boxes with the highest score along with their score/num_of_classes
+(4) combine (1) and (3)
+(5) run the session on a graph
+
+
+
+***course4/week4/art_generation_with_neural_style_transfer******
+(1) define a function to compute the content cost by L2 distance
+(2) define a function to compute the gram matrix of a matrix (its product with its own transpose)
+(3) define a function to compute the style cost of a single layer by L2 distance of the gram matrixes
+(4) use (3) to define a function to compute the weighted average style cost of several layers
+(5) use (1)+(4) to define a function to compute the total cost
+(6) for a given image, assign content cost, style cost and total cost, define a training convolution_model_step_by_step
+(7) an image generator
+
+
+
+******************course4/week4/face_recognition****************
+(1) load a given face face_recognition model
+(2) define a function to compute the triplet loss, which is the positive part of the L2 loss of target to positive example minus the L2 loss of target to negative example plus alpha
+(3) complie the FRmodel, load existed weights of the model
+(4) load people's images
+(5) define a function to compare two images (one is a current image, one is a particular image taken from the database)
+(6) use (5), define a function that iterate over all images in the dataset to see if a person is in the dataset
+
+
+
+**course5/week1/building_a_recurrent_neural_network_step_by_step**
+(1) define a RNN unit forward propogation (from X and current parameter, get Y,a)
+(2) use (1) define a function to run the whole RNN forward
+(3) define a LSTM unit forward propogation (from X and current parameter, get Y,a)
+(4) use (3) define a function to run the whole LSTM forward
+(5) define backward propagation for a RNN unit
+(6) use (5) define a function to run the whole RNN backward
+(7) define backward propagation for a LSTM unit
+(8) use (7) define a function to run the whole LSTM backward
+
+
+
+
+**course5/week1/dinosaurus_island_character_level_language_model**
+(1) load the name list of dinosaurus and play around with the characters
+(2) define a gradient clipper (if the absolute value is greater than a criteria, use that criteria instead; if not, just keep the original value)
+(3) define a function that takes in an input, iteratively calculate probabilities, and then output characters according to these probabilities
+(4) given the forward, backward and parameter update function, define an optimizer than implement one step of the optimization with clipped gradient
+(5) combine all these together
+
+
+******course5/week1/improvise_a_jazz_solo_with_an_lstm_network******
+(1) load the music and play around
+(2) define a model with keras packages
+..........need to understand the structure of sound dataset
+
+
+
+****************course5/week2/operations_on_word_vectors*************
+(1) define a function to compute the cosine similarity between two operations_on_word_vectors
+(2) define a fucntion to find the word that is most similar to b-a+c
+(3) define a function to neuralize the word (compared with the difference of g=man-woman, minus the projection onto g)
+(4) define a function to centralize the word
+
+
+
+************************course5/week2/emojify************************
+(1) define a function to compute the average embedding vector of a sentence
+(2) define a model to predict emoji with the input sentence (transform the sentence to average vector, then use only one layer of multiplication+softmax)
+(3) define a function that convert an array of sentences into an array of indices (their index in the dictionary) corresponding to words in the sentences
+(4) use (3) to build a LSTM model
+
+
+
+
+*******course5/week3/neural_machine_translation_with_attention********
+(1) load data, first use the dictionary to map all numbers/characters to 0-36 number, then do one-hot encoding
+(2) follow the graph on the right, given s and calculate the context as output
+(3) ....
+
+
+
+
+*****************course5/week3/trigger_word_detection*****************
